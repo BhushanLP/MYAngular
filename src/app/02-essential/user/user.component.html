@@ -1,0 +1,56 @@
+<!-- <div *ngFor="let user of selectedUser ">
+    <button (click)="onClick(user.id,user.name)">
+        <img [src]=" 'assets/users/' + user.avatar" [alt]="user.name">
+        <span>{{user.name}}</span>
+    </button>
+</div> -->
+
+@for(user of MYselectedUserBySignal(); track user.id) {
+    <button (click)="onClick(user.id,user.name)">
+        <img [src]=" 'assets/users/' + user.avatar" [alt]="user.name">
+        <span>{{user.name}}</span>
+    </button>
+}
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <h2>Signals</h2>
+            <button>
+                <img [src]=" imgPath()" [alt]="selectedUserBySignal().name">
+                <!-- <img [src]="'assets/users/' + selectedUserBySignal().avatar" [alt]="selectedUserBySignal().name"> -->
+                <span>{{selectedUserBySignal().name}}</span>
+            </button>
+        </div>
+        <div class="col-3">
+            @if(isVerifiedUser) {
+            <p>VERIFIED USER</p>
+            }@else {
+            <p>Not VERIFIED USER</p>
+            }
+        </div>
+        <div class="col-3">
+            <ul>
+                @for (user of MYselectedUserBySignal(); track user.id) {
+                <li>{{ user.name }}</li>
+                } @empty {
+                <li>No users found.</li>
+                }
+            </ul>
+        </div>
+        <div class="col-3">
+            <div [ngSwitch]="status">
+                <p *ngSwitchCase="'loading'">Loading</p>
+                <p *ngSwitchCase="'success'">Success</p>
+                <p *ngSwitchDefault>Unknown</p>
+            </div>
+            @switch (modernStatus()) {
+            @case ('loading') { <p>Loading</p> }
+            @case ('success') { <p>Success</p> }
+            @default { <p>Unknown</p> }
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,33 @@
+@if(!results){
+    <p>PLease enter value to calculate investment results!</p>
+
+}@else{
+    <div class="container">
+        <div class="row">
+    <table>
+        <thead>
+        <tr>
+            <th>Year</th>
+            <th>Investment Value</th>
+            <th>Interest (year)</th>
+            <th>Total Interest</th>
+            <th>Invested Capital</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows will be populated by the component logic -->
+         @for(res of results; track res.year){
+            <tr>
+                <td>{{res.year}}</td>
+                <td>{{res.investmentValue | currency: 'CAD' : 'symbol' : '4.2-2'}}</td>
+                <td>{{res.valueEndOfYear | currency: 'CAD' : 'symbol' : '4.2-2'}}</td>
+                <td>{{res.totalInterestEarned | currency: 'CAD' : 'symbol' : '4.2-2'}}</td>
+                <td>{{res.totalAmountInvested | currency: 'CAD' : 'symbol' : '4.2-2'}}</td>
+            </tr>
+         }
+    </tbody>
+</table>
+        </div>
+    </div>
+
+}

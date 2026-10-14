@@ -1,0 +1,19 @@
+<section id="tasks">
+  <header>
+    <p>{{ currentUserName }} : {{ currentUser }}</p> 
+    <input type="text" [(ngModel)]="currentUser" placeholder="Enter your user">
+      <menu>
+    <button (click)="addTask()" >Add Task</button>
+  </menu>
+  </header>
+
+<ul>
+  @for(task of selectedUserTasks;track task.id){
+      <li>
+    <app-task [myindidualTask]="task"></app-task>
+  </li>
+  }
+
+</ul>
+</section>
+
